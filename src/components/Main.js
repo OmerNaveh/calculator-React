@@ -44,6 +44,11 @@ import Mexp from "math-expression-evaluator"; //calculates math expressions from
         const currentVal = this.state.equation;
         this.setState({entered:'/', equation:currentVal + "/"})
     }
+    decimal = ()=>{
+        if(String(this.state.entered).includes('.')) return // avoid multiple decimals
+        const currentVal = this.state.equation;
+        this.setState({entered: `${this.state.entered}.`, equation:currentVal + "."})
+    }
     equals=()=>{
         try{
             const equationResult = Mexp.eval(this.state.equation);
@@ -58,31 +63,29 @@ import Mexp from "math-expression-evaluator"; //calculates math expressions from
              <div className='calculator'>
                  <Screen equation ={this.state.equation} entered = {this.state.entered}/>
                 <div>
-                    <Button value ="AC" id="clear" onClick ={this.clearScreen} />
-                    <Button value ="/" id="divide" onClick ={this.divide} />
-                    <Button value ="*" id="multiply" onClick ={this.multiply} />
+                    <Button className='jumbo ac' value ="AC" id="clear" onClick ={this.clearScreen} />
+                    <Button  value ="/" id="divide" onClick ={this.divide} />
+                    <Button  value ="*" id="multiply" onClick ={this.multiply} />
                 </div>
                 <div>
-                    <Button value ="7" id="seven" onClick ={this.numbersClicked} />
-                    <Button value ="8" id="eight" onClick ={this.numbersClicked} />
-                    <Button value ="9" id="nine" onClick ={this.numbersClicked} />
-                    <Button value ="-" id="subtract" onClick ={this.subtract} />
+                    <Button  value ="7" id="seven" onClick ={this.numbersClicked} />
+                    <Button  value ="8" id="eight" onClick ={this.numbersClicked} />
+                    <Button  value ="9" id="nine" onClick ={this.numbersClicked} />
+                    <Button  value ="-" id="subtract" onClick ={this.subtract} />
                 </div>
                 <div>
-                    <Button value ="4" id="four" onClick ={this.numbersClicked} />
-                    <Button value ="5" id="five" onClick ={this.numbersClicked} />
-                    <Button value ="6" id="six" onClick ={this.numbersClicked} />
-                    <Button value ="+" id="add" onClick ={this.add} />
+                    <Button  value ="4" id="four" onClick ={this.numbersClicked} />
+                    <Button  value ="5" id="five" onClick ={this.numbersClicked} />
+                    <Button  value ="6" id="six" onClick ={this.numbersClicked} />
+                    <Button  value ="+" id="add" onClick ={this.add} />
                 </div>
                 <div>
-                    <Button value ="1" id="one" onClick ={this.numbersClicked} />
-                    <Button value ="2" id="two" onClick ={this.numbersClicked} />
-                    <Button value ="3" id="three" onClick ={this.numbersClicked} />
-                </div>
-                <div>
-                    <Button value ="0" id="zero" onClick ={this.numbersClicked} />
-                    <Button value ="." id="decimal" onClick ={()=>{}} />
-                    <Button value ="=" id="equals" onClick ={this.equals} />
+                    <Button  value ="1" id="one" onClick ={this.numbersClicked} />
+                    <Button  value ="2" id="two" onClick ={this.numbersClicked} />
+                    <Button  value ="3" id="three" onClick ={this.numbersClicked} />
+                    <Button className='jumboH' value ="=" id="equals" onClick ={this.equals} />
+                    <Button className='jumbo' value ="0" id="zero" onClick ={this.numbersClicked} />
+                    <Button  value ="." id="decimal" onClick ={this.decimal} />
                 </div>
              </div>
          )
